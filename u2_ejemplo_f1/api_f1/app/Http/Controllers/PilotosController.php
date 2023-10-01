@@ -12,7 +12,7 @@ class PilotosController extends Controller
      */
     public function index()
     {
-        sleep(3);//delay para poder ver el progress indicator en el cliente
+        //sleep(3);
         return Piloto::all();
     }
 
