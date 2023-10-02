@@ -14,6 +14,7 @@ class PilotosController extends Controller
     {
         //sleep(3);
         return Piloto::all();
+        // return Piloto::orderByDesc('puntos')->get();
     }
 
     /**

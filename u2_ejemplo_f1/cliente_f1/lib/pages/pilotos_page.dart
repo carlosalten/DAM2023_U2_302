@@ -56,7 +56,18 @@ class _PilotosPageState extends State<PilotosPage> {
         backgroundColor: Color(kPrimaryColor),
         onPressed: () {
           MaterialPageRoute ruta = MaterialPageRoute(builder: (context) => PilotosAgregarPage());
-          Navigator.push(context, ruta);
+          // MaterialPageRoute ruta = MaterialPageRoute(builder: (context) {
+          //   return PilotosAgregarPage();
+          // });
+
+          Navigator.push(context, ruta).then((value) {
+            //refrescar pagina
+            print('REFRESCANDING PAGINA');
+            setState(() {
+              paginas[0] = PilotosPosicionesPage();
+              indicePagina = 0;
+            });
+          });
         },
       ),
       //FIN BOTON AGREGAR
