@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Piloto;
 use Illuminate\Http\Request;
+use App\Http\Requests\PilotosRequest;
 
 class PilotosController extends Controller
 {
@@ -20,7 +21,7 @@ class PilotosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PilotosRequest $request)
     {
         $piloto = new Piloto();
         $piloto->nombre = $request->nombre;
@@ -28,7 +29,8 @@ class PilotosController extends Controller
         $piloto->puntos = $request->puntos;
         $piloto->fecha_nacimiento = $request->fecha_nacimiento;
         $piloto->pais = $request->pais;
-        return $piloto->save();
+        $piloto->save();
+        return $piloto;
     }
 
     /**
