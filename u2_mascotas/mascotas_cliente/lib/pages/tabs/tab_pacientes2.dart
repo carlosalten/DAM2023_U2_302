@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mascotas_cliente/models/mascota.dart';
 import 'package:mascotas_cliente/services/http_service.dart';
+import 'package:mascotas_cliente/utils/util_mensaje.dart';
 import 'package:mascotas_cliente/widgets/mascota_tile.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -37,7 +38,50 @@ class _TabPacientes2State extends State<TabPacientes2> {
                     itemBuilder: (context, index) {
                       //Tile Mascota
                       Mascota mascota = Mascota(snapshot.data[index]);
-                      return MascotaTile(mascota: mascota);
+                      return Dismissible(
+                        key: ObjectKey(mascota.id),
+                        direction: DismissDirection.endToStart,
+                        background: Container(
+                          alignment: Alignment.centerRight,
+                          color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                'Borrar',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Icon(
+                                MdiIcons.trashCan,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
+                        ),
+                        onDismissed: (direction) {
+                          //borrar
+                          setState(() {
+                            HttpService().mascotaBorrar(mascota.id).then((borradoOk) {
+                              if (borradoOk) {
+                                UtilMensaje.mostrarSnackbar(
+                                  scaffoldKey.currentContext!,
+                                  MdiIcons.alert,
+                                  'Se ha borrado a ${mascota.nombre}',
+                                );
+                              }
+                            });
+                          });
+
+                          // if(direction==DismissDirection.startToEnd){
+                          //   //hacia la derecha
+                          // }else if(direction==DismissDirection.endToStart){
+                          //   //hacia la izquierda
+                          // }else{
+                          //   //otra
+                          // }
+                        },
+                        child: MascotaTile(mascota: mascota),
+                      );
                       //Fin Tile Mascota
                     },
                   );
