@@ -36,7 +36,7 @@ class _TabPacientes1State extends State<TabPacientes1> {
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         // var mascota = snapshot.data[index];
-                        Mascota mascota = Mascota(snapshot.data[index]);
+                        Mascota mascota = Mascota.fromSnapshot(snapshot.data[index]);
                         return ListTile(
                           leading: Icon(
                             mascota.especie == 'Perro' ? MdiIcons.dog : MdiIcons.cat,

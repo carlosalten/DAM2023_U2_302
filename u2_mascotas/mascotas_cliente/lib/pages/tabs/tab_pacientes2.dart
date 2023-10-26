@@ -37,7 +37,7 @@ class _TabPacientes2State extends State<TabPacientes2> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       //Tile Mascota
-                      Mascota mascota = Mascota(snapshot.data[index]);
+                      Mascota mascota = Mascota.fromSnapshot(snapshot.data[index]);
                       return Dismissible(
                         key: ObjectKey(mascota.id),
                         direction: DismissDirection.endToStart,

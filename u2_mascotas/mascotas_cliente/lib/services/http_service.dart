@@ -24,7 +24,6 @@ class HttpService {
         'especie': especie,
         'raza': raza,
         'nombre': nombre,
-        'fecha_nacimiento': fechaNacimiento,
         'sexo': sexo,
       }),
     );

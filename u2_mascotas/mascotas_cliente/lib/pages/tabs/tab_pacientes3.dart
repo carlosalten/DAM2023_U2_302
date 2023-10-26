@@ -38,7 +38,7 @@ class _TabPacientes3State extends State<TabPacientes3> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
                       //Tile Mascota
-                      Mascota mascota = Mascota(snapshot.data[index]);
+                      Mascota mascota = Mascota.fromSnapshot(snapshot.data[index]);
                       return Slidable(
                         child: MascotaTile(mascota: mascota),
                         startActionPane: ActionPane(
@@ -57,7 +57,7 @@ class _TabPacientes3State extends State<TabPacientes3> {
                           motion: ScrollMotion(),
                           children: [
                             SlidableAction(
-                              backgroundColor: Colors.green,
+                              backgroundColor: Colors.purple,
                               foregroundColor: Colors.white,
                               icon: Icons.edit,
                               label: 'Editar',

@@ -5,7 +5,14 @@ class Mascota {
   String _raza;
   String _sexo;
 
-  Mascota(dynamic snapshot)
+  Mascota({id = 0, nombre = '', especie = '', raza = '', sexo = ''})
+      : _id = id,
+        _nombre = nombre,
+        _especie = especie,
+        _raza = raza,
+        _sexo = sexo;
+
+  Mascota.fromSnapshot(dynamic snapshot)
       : _id = int.parse(snapshot['id'].toString()),
         _nombre = snapshot['nombre'],
         _especie = snapshot['especie'],
