@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mascotas_cliente/models/mascota.dart';
+import 'package:mascotas_cliente/pages/pacientes_editar_page.dart';
 import 'package:mascotas_cliente/services/http_service.dart';
 import 'package:mascotas_cliente/utils/util_mensaje.dart';
 import 'package:mascotas_cliente/widgets/mascota_tile.dart';
@@ -61,7 +62,13 @@ class _TabPacientes3State extends State<TabPacientes3> {
                               foregroundColor: Colors.white,
                               icon: Icons.edit,
                               label: 'Editar',
-                              onPressed: (context) {},
+                              onPressed: (context) {
+                                //navegar al formulario de edición
+                                MaterialPageRoute route = MaterialPageRoute(builder: (context) => PacientesEditarPage(mascotaId: mascota.id));
+                                Navigator.push(context, route).then((value) {
+                                  setState(() {});
+                                });
+                              },
                             ),
                             SlidableAction(
                               backgroundColor: Colors.red,
