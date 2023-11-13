@@ -49,8 +49,13 @@ class EstudiantesPage extends StatelessWidget {
                     ),
                     child: ListTile(
                       leading: Icon(MdiIcons.account),
-                      title: Text('${estudiante['nombre']} ${estudiante['apellido']}'),
-                      subtitle: Text(formatoFecha.format(estudiante['fecha_matricula'].toDate())),
+                      title: Text('${estudiante['nombre']} ${estudiante['apellido']} (${estudiante['edad']})'),
+                      // subtitle: Text('${estudiante['carrera']} / ${formatoFecha.format(estudiante['fecha_matricula'].toDate())}'),
+                      subtitle: Text('${estudiante['carrera']}'),
+                      onLongPress: () {
+                        //bottom sheet con info de estudiante
+                        mostrarInfoEstudiante(context, estudiante);
+                      },
                     ),
                   );
                 },
@@ -66,6 +71,48 @@ class EstudiantesPage extends StatelessWidget {
           Navigator.push(context, route);
         },
       ),
+    );
+  }
+
+  void mostrarInfoEstudiante(BuildContext context, estudiante) {
+    showBottomSheet(
+      context: context,
+      builder: (context) {
+        return SizedBox(
+          height: 350,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.lightBlue.shade50,
+              border: Border.all(color: Colors.lightBlue.shade900, width: 2),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+            ),
+            padding: EdgeInsets.all(10),
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(child: Text('Estudiante: ${estudiante['nombre']} ${estudiante['apellido']}')),
+                Container(child: Text('Carrera: ${estudiante['carrera']}')),
+                Container(child: Text('Edad: ${estudiante['edad']}')),
+                Container(child: Text('Jornada: ${estudiante['jornada'] == 'd' ? 'Diurna' : 'Vespertina'}')),
+                Spacer(),
+                Container(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    child: Text('Cerrar'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
